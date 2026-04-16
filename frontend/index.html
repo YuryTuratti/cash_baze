@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CashBaze | Inteligência Financeira Premium</title>
+    
+    <meta name="theme-color" content="#09090b">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <link rel="manifest" href="manifest.json">
+
+    <meta name="theme-color" content="#09090b">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'app-bg': '#09090b',       
+                        'app-card': '#18181b',     
+                        'app-border': '#27272a',   
+                        'app-cyan': '#2dd4bf',     
+                        'app-blue': '#3b82f6',
+                        'app-coral': '#fb7185'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+        body { background-color: #09090b; color: #e4e4e7; overflow-x: hidden; scroll-behavior: smooth; }
+        
+        /* Custom Scrollbar Premium */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #09090b; }
+        ::-webkit-scrollbar-thumb { background: #27272a; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #3b82f6; }
+
+        /* Efeitos visuais Dark Tech */
+        .glow-cyan { text-shadow: 0 0 30px rgba(45, 212, 191, 0.5); }
+        .gradient-text { background: linear-gradient(to right, #2dd4bf, #3b82f6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .glass-nav { background: rgba(9, 9, 11, 0.8); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 1px solid rgba(39, 39, 42, 0.6); }
+        
+        /* Botão Magnético Effect */
+        .btn-magnetic { transition: transform 0.2s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.2s; }
+        .btn-magnetic:hover { transform: translateY(-3px) scale(1.02); }
+
+        /* Hover Card Effect */
+        .feature-card { transition: all 0.3s ease; border: 1px solid #27272a; }
+        .feature-card:hover { border-color: #2dd4bf; background-color: #1a1a1d; transform: translateY(-5px); box-shadow: 0 10px 30px -10px rgba(45, 212, 191, 0.1); }
+
+        /* Mock UI */
+        .mock-ui-element { background: #18181b; border: 1px solid #27272a; border-radius: 12px; padding: 16px; box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
+    </style>
+</head>
+<body class="antialiased selection:bg-app-cyan selection:text-black">
+
+    <nav class="fixed top-0 left-0 w-full z-50 glass-nav">
+        <div class="max-w-7xl mx-auto px-4 md:px-6 h-16 md:h-20 flex items-center justify-between">
+            <div class="flex items-center gap-2 md:gap-3">
+                <div class="w-8 h-8 md:w-10 md:h-10 rounded-xl bg-app-blue flex items-center justify-center text-white shadow-[0_0_15px_rgba(59,130,246,0.5)]">
+                    <i class="ph ph-wallet text-xl md:text-2xl"></i>
+                </div>
+                <span class="text-lg md:text-xl font-black text-white tracking-tight">CashBaze<span class="text-app-cyan">.</span></span>
+            </div>
+            
+            <div class="hidden md:flex items-center gap-8 text-sm font-medium text-zinc-400">
+                <a href="#proposito" class="hover:text-white transition">O Propósito</a>
+                <a href="#inteligencia" class="hover:text-white transition">Inteligência</a>
+                <a href="login.html" class="text-white hover:text-app-cyan transition font-bold">Entrar</a>
+                <a href="login.html" class="btn-magnetic bg-white text-black px-6 py-2.5 rounded-full font-bold hover:bg-zinc-200 transition">Abrir App</a>
+            </div>
+
+            <div class="md:hidden">
+                <a href="login.html" class="bg-white text-black px-4 py-1.5 rounded-full text-xs font-bold">Abrir App</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="relative pt-32 pb-16 md:pt-52 md:pb-32 overflow-hidden flex flex-col items-center justify-center text-center px-4 md:px-6 min-h-[90vh]">
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] md:w-[600px] h-[300px] md:h-[600px] bg-app-cyan/15 blur-[80px] md:blur-[120px] rounded-full pointer-events-none z-0"></div>
+
+        <div class="relative z-10 max-w-5xl mx-auto w-full" data-aos="fade-up" data-aos-duration="1000">
+            <div class="inline-flex items-center gap-2 px-3 py-1.5 md:px-4 md:py-2 rounded-full bg-zinc-900 border border-zinc-800 text-[10px] md:text-xs font-bold text-app-cyan uppercase tracking-widest mb-6 md:mb-8 shadow-inner">
+                <span class="w-1.5 h-1.5 md:w-2 md:h-2 rounded-full bg-app-cyan animate-pulse"></span> CashBaze Intelligence v1.0
+            </div>
+            
+            <h1 class="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-black text-white tracking-tighter leading-[1.05] mb-6 md:mb-8 glow-cyan break-words">
+                Retome o <br class="hidden sm:block" />Controle do <br class="hidden sm:block" /><span class="gradient-text">Seu Dinheiro.</span>
+            </h1>
+            
+            <p class="text-base md:text-xl text-zinc-400 max-w-2xl mx-auto mb-8 md:mb-12 leading-relaxed font-medium px-2" data-aos="fade-up" data-aos-delay="300">
+                O mercado financeiro quer você confuso com taxas e planilhas complexas. O <strong class="text-white">CashBaze</strong> é a sua plataforma de gestão focada em resultados reais.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-3 px-4" data-aos="fade-up" data-aos-delay="500">
+                <a href="login.html" class="btn-magnetic w-full sm:w-auto bg-app-cyan hover:bg-teal-300 text-black px-8 py-3.5 md:px-10 md:py-4 rounded-xl font-bold text-base md:text-lg transition-all shadow-[0_0_30px_rgba(45,212,191/0.3)] flex items-center justify-center gap-2">
+                    <i class="ph ph-rocket-launch text-xl"></i> Começar Agora
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <section id="proposito" class="py-16 md:py-28 bg-app-bg border-y border-app-border relative z-10 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 md:px-6">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-16 items-center">
+                <div data-aos="fade-right" data-aos-duration="800">
+                    <h2 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-white mb-6 md:mb-8 leading-tight tracking-tight">
+                        A desorganização <br class="hidden md:block"/>financeira <span class="text-app-coral">acabou.</span>
+                    </h2>
+                    <div class="space-y-4 md:space-y-6 text-zinc-400 text-base md:text-lg leading-relaxed font-medium">
+                        <p>Esqueça os aplicativos de bancos que estão mais preocupados em te vender empréstimos do que em organizar a sua vida.</p>
+                        <p>Desenvolvemos o CashBaze não para ser uma "planilha", mas um painel de Inteligência focado na métrica que importa: <strong class="text-white">A sua sobra limpa.</strong></p>
+                    </div>
+                </div>
+                
+                <div class="relative mt-8 lg:mt-0" data-aos="fade-left" data-aos-duration="800" data-aos-delay="200">
+                    <div class="bg-app-card border border-app-border p-6 md:p-10 rounded-2xl shadow-2xl relative z-10 hover:border-app-blue transition-colors duration-300">
+                        <div class="absolute -top-4 -left-4 md:-top-5 md:-left-5 w-10 h-10 md:w-14 md:h-14 bg-app-blue rounded-xl md:rounded-2xl flex items-center justify-center shadow-lg shadow-blue-950/30">
+                            <i class="ph ph-quotes text-white text-xl md:text-3xl"></i>
+                        </div>
+                        <blockquote class="text-lg sm:text-xl md:text-3xl font-medium text-white leading-relaxed pt-4 md:pt-6 tracking-tight">
+                            "Eles desenham sistemas para te manter dependente. Nós desenhamos o CashBaze para devolver a você a sua <span class="text-app-cyan glow-cyan">Soberania Financeira</span>."
+                        </blockquote>
+                        <div class="mt-6 md:mt-8 flex items-center gap-3 md:gap-4 border-t border-app-border pt-4 md:pt-6">
+                            <div class="w-10 h-10 md:w-12 md:h-12 rounded-full bg-zinc-800 flex items-center justify-center font-bold text-xs md:text-sm text-white border-2 border-app-border">Y.T.</div>
+                            <div>
+                                <p class="text-white font-bold text-sm md:text-base">Yury Turatti</p>
+                                <p class="text-zinc-500 text-[10px] md:text-xs uppercase tracking-widest font-bold">Fundador CashBaze</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="visual" class="py-16 md:py-24 bg-zinc-950 relative z-10 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 md:px-6 text-center mb-10 md:mb-16">
+            <h2 class="text-3xl sm:text-4xl md:text-6xl font-extrabold text-white mb-3 md:mb-5" data-aos="fade-up">A visualização do poder.</h2>
+            <p class="text-zinc-400 text-base md:text-lg max-w-xl mx-auto px-2" data-aos="fade-up" data-aos-delay="200">O CashBaze transforma registros simples em dashboards corporativos.</p>
+        </div>
+
+        <div class="max-w-5xl mx-auto px-4 md:px-6 relative flex flex-col md:block h-auto md:h-[650px] pt-4 md:pt-10 gap-6 pb-12 md:pb-0">
+            
+            <div class="relative md:absolute z-20 w-full md:w-[65%] md:top-10 md:left-1/2 md:-translate-x-1/2" data-aos="fade-up" data-aos-duration="1200">
+                <div class="mock-ui-element shadow-app-cyan/5 hover:border-app-cyan transition group">
+                    <div class="flex justify-between items-center mb-4 pb-3 border-b border-app-border">
+                        <span class="text-[11px] md:text-sm font-bold text-white flex items-center gap-1 md:gap-2"><i class="ph ph-chart-bar text-app-cyan"></i> Desempenho Semestral</span>
+                        <span class="text-[10px] md:text-xs text-zinc-500">Junho 2026</span>
+                    </div>
+                    <div class="space-y-3 pt-2">
+                        <div class="flex items-center gap-2 md:gap-3"><span class="text-[10px] md:text-xs text-zinc-500 w-6 md:w-10">Jun</span><div class="h-5 md:h-6 bg-app-cyan rounded w-[75%] md:w-[85%] shadow-md"></div><span class="text-[10px] md:text-xs text-white font-bold">+4.2k</span></div>
+                        <div class="flex items-center gap-2 md:gap-3"><span class="text-[10px] md:text-xs text-zinc-500 w-6 md:w-10">Mai</span><div class="h-5 md:h-6 bg-app-cyan rounded w-[50%] md:w-[60%] shadow-md"></div><span class="text-[10px] md:text-xs text-white font-bold">+2.8k</span></div>
+                        <div class="flex items-center gap-2 md:gap-3"><span class="text-[10px] md:text-xs text-zinc-500 w-6 md:w-10">Abr</span><div class="h-5 md:h-6 bg-app-coral rounded w-[25%] md:w-[30%] shadow-md"></div><span class="text-[10px] md:text-xs text-app-coral font-bold">-1.1k</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="relative md:absolute z-30 w-full md:w-[320px] md:right-0 md:top-[220px]" data-aos="fade-up" data-aos-duration="900" data-aos-delay="100">
+                <div class="mock-ui-element shadow-app-blue/5 hover:border-app-blue transition">
+                    <div class="flex justify-between items-center mb-3">
+                        <span class="text-[11px] md:text-xs font-bold text-white flex items-center gap-1.5"><i class="ph ph-list-bullets text-app-blue"></i> Últimos Registros</span>
+                    </div>
+                    <div class="space-y-2 md:space-y-2.5 text-[10px] md:text-[11px]">
+                        <div class="flex justify-between bg-zinc-900/50 p-2 rounded">
+                            <span class="text-zinc-300 font-medium">Mercado Semanal</span>
+                            <span class="text-app-coral font-bold">- R$ 345,90</span>
+                        </div>
+                        <div class="flex justify-between bg-zinc-900/50 p-2 rounded">
+                            <span class="text-zinc-300 font-medium">PIX Freelance</span>
+                            <span class="text-app-cyan font-bold">+ R$ 1.200,00</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="relative md:absolute z-10 w-full md:w-[260px] md:left-0 md:top-[300px]" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200">
+                <div class="mock-ui-element shadow-white/5 hover:border-zinc-500 transition">
+                    <div class="text-center">
+                        <p class="text-[9px] md:text-[10px] text-zinc-500 uppercase tracking-widest font-bold mb-1">Caixa Livre Restante</p>
+                        <p class="text-2xl md:text-3xl font-black text-white glow-cyan">R$ 1.850</p>
+                        <div class="w-full h-1.5 bg-zinc-800 rounded-full mt-3 overflow-hidden">
+                            <div class="w-[65%] h-full bg-app-cyan rounded-full"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="absolute bottom-0 left-0 w-full h-20 md:h-40 bg-gradient-to-t from-zinc-950 to-transparent z-40 pointer-events-none"></div>
+        </div>
+    </section>
+
+    <section id="inteligencia" class="py-16 md:py-28 bg-app-bg relative z-10 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 md:px-6">
+            <div class="text-center mb-10 md:mb-16" data-aos="fade-up">
+                <h2 class="text-3xl sm:text-4xl md:text-6xl font-extrabold text-white mb-4 md:mb-5 leading-tight tracking-tight">Menos digitação.<br class="hidden sm:block"/> Mais controle.</h2>
+                <p class="text-zinc-400 text-base md:text-lg max-w-xl mx-auto">Tenha um painel de Business Intelligence pessoal.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+                <div class="feature-card bg-app-card p-6 md:p-9 rounded-2xl flex flex-col h-full" data-aos="fade-up">
+                    <div class="w-12 h-12 md:w-16 md:h-16 bg-blue-500/10 rounded-xl md:rounded-2xl flex items-center justify-center mb-6 md:mb-8 border border-app-blue/20">
+                        <i class="ph ph-target text-2xl md:text-4xl text-app-blue"></i>
+                    </div>
+                    <h3 class="text-xl md:text-2xl font-bold text-white mb-3 md:mb-4 tracking-tight">Orçamento Inteligente</h3>
+                    <p class="text-zinc-400 text-sm md:text-base leading-relaxed flex-1 font-medium">
+                        Defina limites por categoria e deixe o CashBaze calcular o seu ritmo de gasto diário para não estourar o mês.
+                    </p>
+                </div>
+
+                <div class="feature-card bg-app-card p-6 md:p-9 rounded-2xl flex flex-col h-full" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-12 h-12 md:w-16 md:h-16 bg-teal-500/10 rounded-xl md:rounded-2xl flex items-center justify-center mb-6 md:mb-8 border border-app-cyan/20 relative">
+                        <i class="ph ph-radar text-2xl md:text-4xl text-app-cyan"></i>
+                    </div>
+                    <h3 class="text-xl md:text-2xl font-bold text-white mb-3 md:mb-4 tracking-tight">Radar de Caixa Livre</h3>
+                    <p class="text-zinc-400 text-sm md:text-base leading-relaxed flex-1 font-medium">
+                        O sistema isola as suas contas fixas e te diz com brutal honestidade quanto do seu salário ainda é, de fato, seu.
+                    </p>
+                </div>
+
+                <div class="feature-card bg-app-card p-6 md:p-9 rounded-2xl flex flex-col h-full" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-12 h-12 md:w-16 md:h-16 bg-zinc-800 rounded-xl md:rounded-2xl flex items-center justify-center mb-6 md:mb-8 border border-zinc-700">
+                        <i class="ph ph-device-mobile text-2xl md:text-4xl text-white"></i>
+                    </div>
+                    <h3 class="text-xl md:text-2xl font-bold text-white mb-3 md:mb-4 tracking-tight">Instalação Nativa</h3>
+                    <p class="text-zinc-400 text-sm md:text-base leading-relaxed flex-1 font-medium">
+                        Tecnologia PWA. Instale o CashBaze direto do navegador no seu celular com um toque. Rápido, leve e seguro.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 md:py-32 relative z-10 overflow-hidden bg-zinc-950 border-t border-app-border">
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent to-app-blue/15 pointer-events-none"></div>
+        
+        <div class="max-w-5xl mx-auto px-4 md:px-6 text-center relative z-10" data-aos="zoom-in" data-aos-duration="1000">
+            <h2 class="text-4xl sm:text-5xl md:text-7xl font-black text-white mb-6 md:mb-8 tracking-tighter leading-[1] break-words">Pronto para <br class="hidden sm:block"/>organizar a <span class="gradient-text">base?</span></h2>
+            
+            <p class="text-base md:text-2xl text-zinc-300 mb-8 md:mb-12 max-w-2xl mx-auto font-medium leading-relaxed px-2">Assuma o controle soberano do seu fluxo de caixa hoje. Rápido e sem planilhas complexas.</p>
+            
+            <div class="px-4">
+                <a href="login.html" class="btn-magnetic w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-white text-black px-8 py-4 md:px-12 md:py-5 rounded-2xl font-black text-lg md:text-2xl transition-all shadow-[0_0_40px_rgba(255,255,255,0.25)] hover:bg-zinc-100">
+                    Criar Conta Gratuita <i class="ph ph-arrow-right font-bold text-xl md:text-2xl"></i>
+                </a>
+            </div>
+            
+            <p class="text-zinc-600 text-xs md:text-sm mt-6 md:mt-8 flex flex-col sm:flex-row items-center justify-center gap-1 sm:gap-2">
+                <i class="ph ph-shield-check text-base hidden sm:block"></i> Segurança de nível bancário (Criptografia Bcrypt)
+            </p>
+        </div>
+    </section>
+
+    <footer class="border-t border-app-border bg-[#09090b] py-8 md:py-10 relative z-20">
+        <div class="max-w-7xl mx-auto px-4 md:px-6 flex flex-col md:flex-row items-center justify-between gap-4 md:gap-6">
+            <div class="flex items-center gap-2 text-white font-bold text-base md:text-lg">
+                <div class="w-6 h-6 md:w-8 md:h-8 rounded-lg bg-app-blue flex items-center justify-center text-white">
+                    <i class="ph ph-wallet text-sm md:text-xl"></i>
+                </div>
+                CashBaze<span class="text-app-cyan">.</span>
+            </div>
+            <p class="text-[10px] md:text-xs text-zinc-700 font-bold uppercase tracking-widest text-center md:text-right">
+                &copy; 2026 CashBaze System Inc. <br class="md:hidden"/>Todos os direitos reservados.
+            </p>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            offset: 50, // Menor offset para mobile, ativa mais fácil
+            delay: 0, 
+            duration: 600, // Ligeiramente mais rápido para mobile não travar
+            easing: 'ease-out-cubic', 
+            once: true, 
+            mirror: false,
+            anchorPlacement: 'top-bottom',
+        });
+    </script>
+
+</body>
+</html>

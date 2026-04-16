@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gasto Yury - Acesso</title>
+
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#09090b">
+
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-messaging-compat.js"></script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>body { background-color: #0a0a0a; }</style>
+</head>
+<body class="flex items-center justify-center min-h-screen p-4 text-white">
+    <div class="bg-[#151515] p-8 rounded-2xl shadow-2xl w-full max-w-md border border-gray-800">
+        <h2 id="form-title" class="text-2xl font-bold text-center mb-6">Bem-vindo</h2>
+        <form id="auth-form" class="space-y-4">
+            
+            <div id="div-nome" class="hidden">
+                <label class="block text-sm mb-1">Nome</label>
+                <input type="text" id="nome" class="w-full bg-[#0a0a0a] border border-gray-800 rounded-lg p-3 text-white">
+            </div>
+
+            <div id="div-salario" class="hidden">
+                <label class="block text-sm mb-1">Salário / Renda Fixo (R$)</label>
+                <input type="number" step="0.01" id="salario" class="w-full bg-[#0a0a0a] border border-gray-800 rounded-lg p-3 text-white" placeholder="Ex: 3500.00">
+            </div>
+
+            <div id="div-dia" class="hidden">
+                <label class="block text-sm mb-1">Dia do Pagamento</label>
+                <input type="number" id="dia_pagamento" min="1" max="31" class="w-full bg-[#0a0a0a] border border-gray-800 rounded-lg p-3 text-white" placeholder="Ex: 5">
+            </div>
+
+            <div>
+                <label class="block text-sm mb-1">Email</label>
+                <input type="email" id="email" required class="w-full bg-[#0a0a0a] border border-gray-800 rounded-lg p-3 text-white" placeholder="seu@email.com">
+            </div>
+            
+            <div>
+                <label class="block text-sm mb-1">Senha</label>
+                <input type="password" id="senha" required class="w-full bg-[#0a0a0a] border border-gray-800 rounded-lg p-3 text-white">
+            </div>
+
+            <div id="mensagem" class="hidden text-sm p-3 rounded text-center"></div>
+            <button type="submit" id="btn-submit" class="w-full bg-blue-600 hover:bg-blue-500 py-3 rounded-lg font-bold">Entrar</button>
+        </form>
+        
+        <div class="mt-6 text-center text-sm text-gray-400">
+            <span id="toggle-text">Ainda não tem conta?</span>
+            <button id="btn-toggle" class="text-blue-500 ml-1">Criar conta</button>
+        </div>
+    </div>
+
+    <script>
+        let isLogin = true;
+        
+        // Alternar entre Login e Cadastro
+        document.getElementById('btn-toggle').addEventListener('click', () => {
+            isLogin = !isLogin;
+            
+            // Mostra/Oculta os campos de cadastro
+            document.getElementById('div-nome').classList.toggle('hidden');
+            document.getElementById('div-salario').classList.toggle('hidden');
+            document.getElementById('div-dia').classList.toggle('hidden');
+            
+            // Atualiza os textos
+            document.getElementById('form-title').innerText = isLogin ? 'Bem-vindo' : 'Criar Conta';
+            document.getElementById('btn-submit').innerText = isLogin ? 'Entrar' : 'Cadastrar';
+            document.getElementById('toggle-text').innerText = isLogin ? 'Ainda não tem conta?' : 'Já tem conta?';
+            document.getElementById('btn-toggle').innerText = isLogin ? 'Criar conta' : 'Fazer login';
+        });
+
+        // Enviar o formulário
+        document.getElementById('auth-form').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const msg = document.getElementById('mensagem');
+            msg.classList.add('hidden');
+            
+            // Prepara os dados base (AGORA COM EMAIL)
+            const payload = { 
+                email: document.getElementById('email').value, 
+                senha: document.getElementById('senha').value 
+            };
+            
+            // Adiciona os dados extras se for Cadastro
+            if (!isLogin) {
+                payload.nome = document.getElementById('nome').value;
+                payload.salario = parseFloat(document.getElementById('salario').value) || 0.0;
+                payload.dia_pagamento = parseInt(document.getElementById('dia_pagamento').value) || 5;
+            }
+
+            try {
+                const res = await fetch(`http://localhost:8000/api/auth/${isLogin ? 'login' : 'registrar'}`, {
+                    method: 'POST', 
+                    headers: {'Content-Type': 'application/json'}, 
+                    body: JSON.stringify(payload)
+                });
+                
+                const data = await res.json();
+                if (!res.ok) throw new Error(data.detail || "Erro ao processar requisição.");
+
+                if (isLogin) {
+                    // Salva a sessão e entra no sistema
+                    localStorage.setItem('token', data.access_token);
+                    localStorage.setItem('nome_usuario', data.nome);
+                    window.location.href = 'index.html'; 
+                } else {
+                    // Cadastro feito com sucesso
+                    msg.innerText = "Conta criada com sucesso! Faça login.";
+                    msg.className = "text-sm p-3 rounded text-center bg-green-900 text-green-400 block mt-4";
+                    
+                    // Limpa os campos extras e volta pra tela de login
+                    document.getElementById('nome').value = '';
+                    document.getElementById('salario').value = '';
+                    document.getElementById('dia_pagamento').value = '';
+                    document.getElementById('btn-toggle').click();
+                }
+            } catch (err) {
+                msg.innerText = err.message;
+                msg.className = "text-sm p-3 rounded text-center bg-red-900 text-red-400 block mt-4";
+            }
+        });
+    </script>
+
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+            navigator.serviceWorker.register('/sw.js')
+                .then(registration => console.log('Service Worker registrado com sucesso!'))
+                .catch(error => console.log('Falha ao registrar o Service Worker:', error));
+            });
+        }
+    </script>
+
+</body>
+</html>
