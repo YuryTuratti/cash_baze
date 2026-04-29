@@ -92,9 +92,9 @@
                 payload.salario = parseFloat(document.getElementById('salario').value) || 0.0;
                 payload.dia_pagamento = parseInt(document.getElementById('dia_pagamento').value) || 5;
             }
-
+            // /api/auth/registrar
             try {
-                const res = await fetch(`https://cashbaze.tech/api/auth/${isLogin ? 'login' : 'registrar'}`, {
+                const res = await fetch(`http://cashbaze.tech/api/auth/${isLogin ? 'login' : 'registrar'}`, {
                     method: 'POST', 
                     headers: {'Content-Type': 'application/json'}, 
                     body: JSON.stringify(payload)
