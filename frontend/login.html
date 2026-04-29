@@ -94,7 +94,7 @@
             }
 
             try {
-                const res = await fetch(`http://localhost:8000/api/auth/${isLogin ? 'login' : 'registrar'}`, {
+                const res = await fetch(`https://cashbaze.tech/api/auth/${isLogin ? 'login' : 'registrar'}`, {
                     method: 'POST', 
                     headers: {'Content-Type': 'application/json'}, 
                     body: JSON.stringify(payload)
